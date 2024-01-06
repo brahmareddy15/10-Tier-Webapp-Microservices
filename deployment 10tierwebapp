@@ -28,7 +28,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: cloudrohith98/emailservice:latest
+        image: brahma00/emailservice:latest
         ports:
         - containerPort: 8080
         env:
@@ -83,7 +83,7 @@ spec:
       serviceAccountName: default
       containers:
         - name: server
-          image: cloudrohith98/checkoutservice:latest
+          image: brahma00/checkoutservice:latest
           ports:
           - containerPort: 5050
           readinessProbe:
@@ -148,7 +148,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: cloudrohith98/recommendationservice:latest
+        image: brahma00/recommendationservice:latest
         ports:
         - containerPort: 8080
         readinessProbe:
@@ -207,7 +207,7 @@ spec:
       serviceAccountName: default
       containers:
         - name: server
-          image: cloudrohith98/frontend:latest
+          image: brahma00/frontend:latest
           ports:
           - containerPort: 8080
           readinessProbe:
@@ -306,7 +306,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: cloudrohith98/paymentservice:latest
+        image: brahma00/paymentservice:latest
         ports:
         - containerPort: 50051
         env:
@@ -360,7 +360,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: cloudrohith98/productcatalogservice:latest
+        image: brahma00/productcatalogservice:latest
         ports:
         - containerPort: 3550
         env:
@@ -414,7 +414,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: cloudrohith98/cartservice:latest
+        image: brahma00/cartservice:latest
         ports:
         - containerPort: 7070
         env:
@@ -480,7 +480,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: cloudrohith98/loadgenerator:latest
+        image: brahma00/loadgenerator:latest
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"
@@ -513,7 +513,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: cloudrohith98/currencyservice:latest
+        image: brahma00/currencyservice:latest
         ports:
         - name: grpc
           containerPort: 7000
@@ -567,7 +567,7 @@ spec:
       serviceAccountName: default
       containers:
       - name: server
-        image: cloudrohith98/shippingservice:latest
+        image: brahma00/shippingservice:latest
         ports:
         - containerPort: 50051
         env:
@@ -677,7 +677,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: cloudrohith98/adservice:latest
+        image: brahma00/adservice:latest
         ports:
         - containerPort: 9555
         env:
@@ -722,65 +722,65 @@ Deployments:
 emailservice Deployment:
 
 Service: emailservice
-Container Image: cloudrohith98/emailservice:latest
+Container Image: brahma00/emailservice:latest
 Exposes a gRPC service on port 8080.
 Resource limits: CPU: 100m, Memory: 64Mi
 checkoutservice Deployment:
 
 Service: checkoutservice
-Container Image: cloudrohith98/checkoutservice:latest
+Container Image: brahma00/checkoutservice:latest
 Exposes a gRPC service on port 5050.
 Dependencies on other services like productcatalogservice, shippingservice, etc.
 Resource limits: CPU: 100m, Memory: 64Mi
 recommendationservice Deployment:
 
 Service: recommendationservice
-Container Image: cloudrohith98/recommendationservice:latest
+Container Image: brahma00/recommendationservice:latest
 Exposes a gRPC service on port 8080.
 Dependencies on productcatalogservice.
 Resource limits: CPU: 100m, Memory: 220Mi
 frontend Deployment:
 
 Service: frontend
-Container Image: cloudrohith98/frontend:latest
+Container Image: brahma00/frontend:latest
 Exposes HTTP on port 80.
 Dependencies on various services.
 Resource limits: CPU: 100m, Memory: 64Mi
 paymentservice Deployment:
 
 Service: paymentservice
-Container Image: cloudrohith98/paymentservice:latest
+Container Image: brahma00/paymentservice:latest
 Exposes a gRPC service on port 50051.
 Resource limits: CPU: 100m, Memory: 64Mi
 productcatalogservice Deployment:
 
 Service: productcatalogservice
-Container Image: cloudrohith98/productcatalogservice:latest
+Container Image: brahma00/productcatalogservice:latest
 Exposes a gRPC service on port 3550.
 Resource limits: CPU: 100m, Memory: 64Mi
 cartservice Deployment:
 
 Service: cartservice
-Container Image: cloudrohith98/cartservice:latest
+Container Image: brahma00/cartservice:latest
 Exposes a gRPC service on port 7070.
 Dependencies on redis-cart.
 Resource limits: CPU: 200m, Memory: 64Mi
 loadgenerator Deployment:
 
 Service: loadgenerator
-Container Image: cloudrohith98/loadgenerator:latest
+Container Image: brahma00/loadgenerator:latest
 Generates load on the frontend service.
 Resource limits: CPU: 300m, Memory: 256Mi
 currencyservice Deployment:
 
 Service: currencyservice
-Container Image: cloudrohith98/currencyservice:latest
+Container Image: brahma00/currencyservice:latest
 Exposes a gRPC service on port 7000.
 Resource limits: CPU: 100m, Memory: 64Mi
 shippingservice Deployment:
 
 Service: shippingservice
-Container Image: cloudrohith98/shippingservice:latest
+Container Image: brahma00/shippingservice:latest
 Exposes a gRPC service on port 50051.
 Resource limits: CPU: 100m, Memory: 64Mi
 redis-cart Deployment:
@@ -792,7 +792,7 @@ Resource limits for the Redis container.
 adservice Deployment:
 
 Service: adservice
-Container Image: cloudrohith98/adservice:latest
+Container Image: brahma00/adservice:latest
 Exposes a gRPC service on port 9555.
 Resource limits: CPU: 200m, Memory: 180Mi
 
