@@ -1,0 +1,186 @@
+
+pipeline {
+    agent any
+    environment{
+        SCANNER_HOME= tool 'sonar-scanner'
+    }
+    stages {
+        stage('git checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/brahmareddy15/10-Tier-Webapp-Microservices.git'
+            }
+        }
+        stage('SonarQube') {
+            steps {
+                withSonarQubeEnv('sonar') {
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=10-Tier -Dsonar.ProjectName=10-Tier -Dsonar.java.binaries=. '''   
+                }
+                    
+            }
+                
+        }
+        stage('adservice'){
+            steps{
+             script{
+              withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
+                        dir('/var/lib/jenkins/workspace/10-tier/src/adservice') {
+                            sh 'docker build -t brahma00/adservice:latest .'
+                            sh "docker push brahma00/adservice:latest"
+                            sh "docker rmi brahma00/adservice:latest"
+                        }
+                    }
+            }
+            }
+        }
+        
+        stage('cartservice'){
+            steps{
+             script{
+              withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
+                        dir('/var/lib/jenkins/workspace/10-tier/src/cartservice/src/') {
+                            sh 'docker build -t brahma00/cartservice:latest .'
+                            sh "docker push brahma00/cartservice:latest"
+                            sh "docker rmi brahma00/cartservice:latest"
+                        }
+                    }
+            }
+            }
+        }
+        
+        stage('checkoutservice'){
+            steps{
+             script{
+              withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
+                        dir('/var/lib/jenkins/workspace/10-tier/src/checkoutservice/') {
+                            sh 'docker build -t brahma00/checkoutservice:latest .'
+                            sh "docker push brahma00/checkoutservice:latest"
+                            sh "docker rmi brahma00/checkoutservice:latest"
+                        }
+                    }
+            }
+            }
+        }
+        
+        stage('currencyservice'){
+            steps{
+             script{
+              withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
+                        dir('/var/lib/jenkins/workspace/10-tier/src/currencyservice/') {
+                            sh 'docker build -t brahma00/currencyservice:latest .'
+                            sh "docker push brahma00/currencyservice:latest"
+                            sh "docker rmi brahma00/currencyservice:latest"
+                        }
+                    }
+            }
+            }
+        }
+        
+        stage('emailservice'){
+            steps{
+             script{
+              withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
+                        dir('/var/lib/jenkins/workspace/10-tier/src/emailservice/') {
+                            sh 'docker build -t brahma00/emailservice:latest .'
+                            sh "docker push brahma00/emailservice:latest"
+                            sh "docker rmi brahma00/emailservice:latest"
+                        }
+                    }
+            }
+            }
+        }
+        
+        stage('frontend'){
+            steps{
+             script{
+              withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
+                        dir('/var/lib/jenkins/workspace/10-tier/src/frontend/') {
+                            sh 'docker build -t brahma00/frontend:latest .'
+                            sh "docker push brahma00/frontend:latest"
+                            sh "docker rmi brahma00/frontend:latest"
+                        }
+                    }
+            }
+            }
+        }
+    
+        stage('loadgenerator'){
+            steps{
+             script{
+              withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
+                        dir('/var/lib/jenkins/workspace/10-tier/src/loadgenerator/') {
+                            sh 'docker build -t brahma00/loadgenerator:latest .'
+                            sh "docker push brahma00/loadgenerator:latest"
+                            sh "docker rmi brahma00/loadgenerator:latest"
+                        }
+                    }
+            }
+            }
+        }
+    
+        stage('paymentservice'){
+            steps{
+             script{
+              withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
+                        dir('/var/lib/jenkins/workspace/10-tier/src/paymentservice/') {
+                            sh 'docker build -t brahma00/paymentservice:latest .'
+                            sh "docker push brahma00/paymentservice:latest"
+                            sh "docker rmi brahma00/paymentservice:latest"
+                        }
+                    }
+            }
+            }
+        }
+        
+        stage('productcatalogservice'){
+            steps{
+             script{
+              withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
+                        dir('/var/lib/jenkins/workspace/10-tier/src/productcatalogservice/') {
+                            sh 'docker build -t brahma00/productcatalogservice:latest .'
+                            sh "docker push brahma00/productcatalogservice:latest"
+                            sh "docker rmi brahma00/productcatalogservice:latest"
+                        }
+                    }
+            }
+            }
+        }
+        
+        stage('recommendationservice'){
+            steps{
+             script{
+              withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
+                        dir('/var/lib/jenkins/workspace/10-tier/src/recommendationservice/') {
+                            sh 'docker build -t brahma00/recommendationservice:latest .'
+                            sh "docker push brahma00/recommendationservice:latest"
+                            sh "docker rmi brahma00/recommendationservice:latest"
+                        }
+                    }
+            }
+            }
+        }
+        
+        stage('shippingservice'){
+            steps{
+             script{
+              withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
+                        dir('/var/lib/jenkins/workspace/10-tier/src/shippingservice/') {
+                            sh 'docker build -t brahma00/shippingservice:latest .'
+                            sh "docker push brahma00/shippingservice:latest"
+                            sh "docker rmi brahma00/shippingservice:latest"
+                        }
+                    }
+            }
+            }
+        }
+        
+        stage('K8-Deploy'){
+            steps{
+                withKubeConfig(caCertificate: '', clusterName: 'my-eks-t', contextName: '', credentialsId: 'k8-token', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://B9006D029692A63C7789E16626800F53.sk1.ap-south-1.eks.amazonaws.com') {
+                    sh 'kubectl apply -f deployment-service.yml'
+                    sh 'kubectl get pods'
+                    sh 'kubectl get svc'
+                }
+            }
+        }
+}
+}
