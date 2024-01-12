@@ -259,7 +259,7 @@ pipeline {
     stages {
         stage('git checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/cloudtarun97/10-tier_webapp.git'
+                git branch: 'main', url: 'https://github.com/brahmareddy15/10-Tier-Webapp-Microservices.git'
             }
         }
         stage('SonarQube') {
@@ -276,9 +276,9 @@ pipeline {
              script{
               withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
                         dir('/var/lib/jenkins/workspace/10-tier/src/adservice') {
-                            sh 'docker build -t cloudtarun97/adservice:latest .'
-                            sh "docker push cloudtarun97/adservice:latest"
-                            sh "docker rmi cloudtarun97/adservice:latest"
+                            sh 'docker build -t brahma00/adservice:latest .'
+                            sh "docker push brahma00/adservice:latest"
+                            sh "docker rmi brahma00/adservice:latest"
                         }
                     }
             }
@@ -290,9 +290,9 @@ pipeline {
              script{
               withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
                         dir('/var/lib/jenkins/workspace/10-tier/src/cartservice/src/') {
-                            sh 'docker build -t cloudtarun97/cartservice:latest .'
-                            sh "docker push cloudtarun97/cartservice:latest"
-                            sh "docker rmi cloudtarun97/cartservice:latest"
+                            sh 'docker build -t brahma00/cartservice:latest .'
+                            sh "docker push brahma00/cartservice:latest"
+                            sh "docker rmi brahma00/cartservice:latest"
                         }
                     }
             }
@@ -304,9 +304,9 @@ pipeline {
              script{
               withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
                         dir('/var/lib/jenkins/workspace/10-tier/src/checkoutservice/') {
-                            sh 'docker build -t cloudtarun97/checkoutservice:latest .'
-                            sh "docker push cloudtarun97/checkoutservice:latest"
-                            sh "docker rmi cloudtarun97/checkoutservice:latest"
+                            sh 'docker build -t brahma00/checkoutservice:latest .'
+                            sh "docker push brahma00/checkoutservice:latest"
+                            sh "docker rmi brahma00/checkoutservice:latest"
                         }
                     }
             }
@@ -318,9 +318,9 @@ pipeline {
              script{
               withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
                         dir('/var/lib/jenkins/workspace/10-tier/src/currencyservice/') {
-                            sh 'docker build -t cloudtarun97/currencyservice:latest .'
-                            sh "docker push cloudtarun97/currencyservice:latest"
-                            sh "docker rmi cloudtarun97/currencyservice:latest"
+                            sh 'docker build -t brahma00/currencyservice:latest .'
+                            sh "docker push brahma00/currencyservice:latest"
+                            sh "docker rmi brahma00/currencyservice:latest"
                         }
                     }
             }
@@ -332,9 +332,9 @@ pipeline {
              script{
               withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
                         dir('/var/lib/jenkins/workspace/10-tier/src/emailservice/') {
-                            sh 'docker build -t cloudtarun97/emailservice:latest .'
-                            sh "docker push cloudtarun97/emailservice:latest"
-                            sh "docker rmi cloudtarun97/emailservice:latest"
+                            sh 'docker build -t brahma00/emailservice:latest .'
+                            sh "docker push brahma00/emailservice:latest"
+                            sh "docker rmi brahma00/emailservice:latest"
                         }
                     }
             }
@@ -346,9 +346,9 @@ pipeline {
              script{
               withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
                         dir('/var/lib/jenkins/workspace/10-tier/src/frontend/') {
-                            sh 'docker build -t cloudtarun97/frontend:latest .'
-                            sh "docker push cloudtarun97/frontend:latest"
-                            sh "docker rmi cloudtarun97/frontend:latest"
+                            sh 'docker build -t brahma00/frontend:latest .'
+                            sh "docker push brahma00/frontend:latest"
+                            sh "docker rmi brahma00/frontend:latest"
                         }
                     }
             }
@@ -360,9 +360,9 @@ pipeline {
              script{
               withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
                         dir('/var/lib/jenkins/workspace/10-tier/src/loadgenerator/') {
-                            sh 'docker build -t cloudtarun97/loadgenerator:latest .'
-                            sh "docker push cloudtarun97/loadgenerator:latest"
-                            sh "docker rmi cloudtarun97/loadgenerator:latest"
+                            sh 'docker build -t brahma00/loadgenerator:latest .'
+                            sh "docker push brahma00/loadgenerator:latest"
+                            sh "docker rmi brahma00/loadgenerator:latest"
                         }
                     }
             }
@@ -374,9 +374,9 @@ pipeline {
              script{
               withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
                         dir('/var/lib/jenkins/workspace/10-tier/src/paymentservice/') {
-                            sh 'docker build -t cloudtarun97/paymentservice:latest .'
-                            sh "docker push cloudtarun97/paymentservice:latest"
-                            sh "docker rmi cloudtarun97/paymentservice:latest"
+                            sh 'docker build -t brahma00/paymentservice:latest .'
+                            sh "docker push brahma00/paymentservice:latest"
+                            sh "docker rmi brahma00/paymentservice:latest"
                         }
                     }
             }
@@ -388,9 +388,9 @@ pipeline {
              script{
               withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
                         dir('/var/lib/jenkins/workspace/10-tier/src/productcatalogservice/') {
-                            sh 'docker build -t cloudtarun97/productcatalogservice:latest .'
-                            sh "docker push cloudtarun97/productcatalogservice:latest"
-                            sh "docker rmi cloudtarun97/productcatalogservice:latest"
+                            sh 'docker build -t brahma00/productcatalogservice:latest .'
+                            sh "docker push brahma00/productcatalogservice:latest"
+                            sh "docker rmi brahma00/productcatalogservice:latest"
                         }
                     }
             }
@@ -402,9 +402,9 @@ pipeline {
              script{
               withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
                         dir('/var/lib/jenkins/workspace/10-tier/src/recommendationservice/') {
-                            sh 'docker build -t cloudtarun97/recommendationservice:latest .'
-                            sh "docker push cloudtarun97/recommendationservice:latest"
-                            sh "docker rmi cloudtarun97/recommendationservice:latest"
+                            sh 'docker build -t brahma00/recommendationservice:latest .'
+                            sh "docker push brahma00/recommendationservice:latest"
+                            sh "docker rmi brahma00/recommendationservice:latest"
                         }
                     }
             }
@@ -416,9 +416,9 @@ pipeline {
              script{
               withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
                         dir('/var/lib/jenkins/workspace/10-tier/src/shippingservice/') {
-                            sh 'docker build -t cloudtarun97/shippingservice:latest .'
-                            sh "docker push cloudtarun97/shippingservice:latest"
-                            sh "docker rmi cloudtarun97/shippingservice:latest"
+                            sh 'docker build -t brahma00/shippingservice:latest .'
+                            sh "docker push brahma00/shippingservice:latest"
+                            sh "docker rmi brahma00/shippingservice:latest"
                         }
                     }
             }
